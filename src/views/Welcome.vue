@@ -2,7 +2,7 @@
   <div class="welcome container">
     <div v-if="showLogin">
       <h2>Login</h2>
-      <LoginForm />
+      <LoginForm @login="toChat" />
       <p>
         You need to signup?
         <span @click="showLogin = !showLogin">click here</span>
@@ -10,7 +10,7 @@
     </div>
     <div v-else>
       <h2>Signup</h2>
-      <SignupForm />
+      <SignupForm @signup="toChat" />
       <p>
         You need to login?
         <span @click="showLogin = !showLogin">click here</span>
@@ -23,14 +23,19 @@
 import { ref } from '@vue/reactivity';
 import SignupForm from '../components/SignupForm.vue';
 import LoginForm from '../components/LoginForm.vue';
+import { useRouter } from 'vue-router'
 
 export default {
   components: { SignupForm, LoginForm },
   setup() {
     const showLogin = ref(true);
-    console.log(showLogin);
+    const router = useRouter()
 
-    return { showLogin };
+    const toChat = () => {
+      router.push({ name: 'Chatroom' })
+    }
+
+    return { showLogin, toChat };
   },
 };
 </script>
@@ -41,7 +46,7 @@ export default {
   padding: 20px 0;
 }
 .welcome form {
-  width: 300px;
+  width: 50%;
   margin: 20px auto;
 }
 .welcome label {
@@ -50,7 +55,7 @@ export default {
 }
 .welcome input {
   width: 100%;
-  padding: 10px;
+  padding: 15px 5px;
   border-radius: 20px;
   border: 1px solid #eee;
   outline: none;
