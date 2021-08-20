@@ -20,24 +20,24 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-import SignupForm from '../components/SignupForm.vue';
-import LoginForm from '../components/LoginForm.vue';
+import { ref } from '@vue/reactivity'
+import SignupForm from '../components/SignupForm.vue'
+import LoginForm from '../components/LoginForm.vue'
 import { useRouter } from 'vue-router'
 
 export default {
   components: { SignupForm, LoginForm },
   setup() {
-    const showLogin = ref(true);
+    const showLogin = ref(true)
     const router = useRouter()
 
     const toChat = () => {
       router.push({ name: 'Chatroom' })
     }
 
-    return { showLogin, toChat };
+    return { showLogin, toChat }
   },
-};
+}
 </script>
 
 <style>
